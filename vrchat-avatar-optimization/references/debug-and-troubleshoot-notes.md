@@ -26,6 +26,15 @@ An observed two-decimal match supports consistency at that precision.
 It does not expose an unpublished server formula or establish exact runtime GPU residency.
 Do not use similar totals, display names, or embedded prefab IDs as upload identity proof.
 
+## User-reported final-artifact agreement
+
+In one final-upload validation, a user reported a server display of 146.51 MB, matching the final-bundle material-texture estimate of 146.51 MiB.
+MB is the reported UI label. MiB is the calculated unit, and the agreement is at the displayed two-decimal precision.
+This is user-reported server validation, not independently captured telemetry.
+It supports close agreement for that final-artifact estimator in this case, not universal byte-exactness or measured resident GPU memory.
+Use the [small-buffer criteria](full-texture-measurement.md#choose-a-small-evidence-based-buffer) to preserve quality when the complete accounting supports it.
+One case does not establish a fixed universally safe margin or remove the need to recalculate changed inputs.
+
 ## An incomplete inventory becomes an exclusion policy
 
 A historical workflow selected large textures from an incomplete contributor list.

@@ -259,6 +259,9 @@ Follow the order required by the selected dependency-aware plan and build proces
 
 Read the [texture procedure](references/resource-optimization.md#textures-and-effective-memory).
 Base changes on the [complete retained inventory](references/full-texture-measurement.md#8-prevent-incomplete-texture-budgets), including animated alternatives and non-material partitions.
+For complete final-artifact accounting, default to a [small positive texture buffer](references/full-texture-measurement.md#choose-a-small-evidence-based-buffer) below the applicable ceiling.
+Preserve user-selected quality tradeoffs instead of reducing quality merely to create a large margin.
+Recalculate changed or incomplete inventories, artifact identities, formats, and mip data before relying on that buffer.
 Separate discovery, budget inclusion, eligibility, selection, expected output, actual output, and remapped consumers in the policy ledger.
 Never convert an omitted row from an incomplete inventory into an exclusion or frozen Skip rule.
 Prefer explicit Unity texture imports with deliberate target-platform maximum-resolution and compression settings.

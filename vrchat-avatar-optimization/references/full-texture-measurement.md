@@ -265,6 +265,18 @@ Do not clear a declared shader texture only because its current branch is inacti
 Prove that every retained consumer no longer requires it before proposing removal.
 An unresolved reference is an investigation item, not removal authority.
 
+### Choose a small evidence-based buffer
+
+Default to a small positive margin below the applicable rank texture ceiling when accounting is complete and final-artifact-matched.
+Account for exact target-platform formats, every retained mip, cubemap faces, and animation-swapped textures, plus other applicable texture dimensions.
+Use unrounded calculated bytes and the correct ceiling units, not only the rounded UI display.
+Preserve user-selected quality tradeoffs and explicit margin requirements. Avoid extra quality loss solely for an unnecessarily large buffer.
+The method has [user-reported server validation at displayed precision](debug-and-troubleshoot-notes.md#user-reported-final-artifact-agreement).
+That evidence does not establish universal byte-exactness or a fixed universally safe margin.
+If inventory coverage, artifact identity, formats, mips, or processing changes, retain uncertainty checks and recalculate the final artifact.
+Do not assume that a previously adequate small buffer remains safe under incomplete or changed inputs.
+Complete the existing Build, appearance/control, and authorized server/client checks before making their respective acceptance claims.
+
 ## 9. Required report and checker validation
 
 Include these report fields:
