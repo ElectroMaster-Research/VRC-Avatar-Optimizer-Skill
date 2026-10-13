@@ -14,7 +14,7 @@ python -B scripts/check_bootstrap.py
 ```
 
 It reports status and missing field names without printing personal preference values.
-Exit 0 means valid completed preferences. Exit 1 means setup or update is needed. Exit 2 means invalid/unreadable data.
+Without an operation check, exit 0 means valid completed preferences. Exit 1 means setup/update is needed. Exit 2 means invalid/unreadable data.
 Without Python, apply the same required-field and completion checks below. Python installation is not required for bootstrap.
 
 | Existing state | Action |
@@ -35,6 +35,7 @@ Do not rewrite preferences merely because the skill was updated.
 Use explicit choices already supplied by the user. Do not ask them again.
 For a new user, ask how they manage and launch their Unity projects: ALCOM, VRChat Creator Companion (VCC), Unity Hub, or another method.
 Then establish the preferred project-launch method, such as supported CLI/API, GUI computer use, or user-operated GUI.
+For users selecting ALCOM, apply the shared computer-use default below rather than suggesting unsupported CLI/API launch or backup routes.
 Inspect available executables, versions, and permitted automation surfaces using read-only checks where possible.
 Distinguish an installed application from an available automation interface.
 
@@ -50,6 +51,34 @@ Do not silently switch launchers, invent command flags, install packages, or use
 Resolve the exact project and required Unity version separately under [Stage 1](SKILL.md#stage-1-investigation-and-planning).
 Verify the recovery artifact and source ownership before later authorized mutation under [ownership and baseline](references/ownership-and-baseline.md).
 
+### ALCOM computer-use workflow
+
+For all users selecting upstream ALCOM, the shared default for assistant-operated steps is computer use.
+Use computer use to operate ALCOM for authorized project launch, backup, and related GUI management.
+Check that the current interface can operate ALCOM's native GUI, not merely a web browser.
+Record the applicable private method as `computer_use`. Reuse a resolved choice without asking it again.
+Preserve unknown backup settings, destination policy, and other unanswered preferences.
+
+If computer use is unavailable, state: "I cannot operate ALCOM through computer use in this environment."
+Ask the user to choose an alternative, such as completing the ALCOM step manually or selecting another supported workflow.
+This limitation concerns the assistant's interface. It does not establish that ALCOM is unusable by the human.
+Do not silently substitute direct Unity launch, a custom backup script, another manager, or an unsupported internal API.
+Do not change the saved method because an interface is temporarily unavailable.
+An already-selected manual fallback can be followed within its recorded scope without asking the same choice again.
+Do not conflate upstream ALCOM with a separate similarly named rewrite or wrapper. This rule does not select or adopt one.
+
+For an ALCOM step, the checker accepts current capability evidence:
+
+```text
+python -B scripts/check_bootstrap.py --alcom-computer-use unavailable
+```
+
+Use `available`, `unavailable`, or `unknown` according to current evidence, not a stale installation record.
+The helper does not discover tools, grant authorization, or operate ALCOM.
+Its `alcom_operation` result requires a user choice when unavailable and a capability check when unknown.
+Either condition returns exit 1 even when saved preferences are complete. It does not invalidate those preferences or repeat bootstrap.
+Only an available interface and applicable task authorization permit the assistant's actual ALCOM operation through computer use.
+
 ## Preference schema and completion
 
 Use [preferences.example.json](user-data/preferences.example.json) as the sanitized schema, not as actual user preferences.
@@ -59,7 +88,7 @@ Unknown values remain `null`, `false`, or incomplete as defined below. Preserve 
 |---|---|
 | `schema_version` | Integer 1 for this schema. Review other versions rather than treating them as complete. |
 | `project_launcher.tool` | `ALCOM`, `VCC`, `Unity Hub`, or `Other`. For Other, also record a nonempty `other_tool`. |
-| `project_launcher.method` | The user's chosen method for opening the Unity project. A known tool alone does not fill this field. |
+| `project_launcher.method` | The resolved method for opening the Unity project. The shared ALCOM default is `computer_use`, unless the user selects an alternative. |
 | `backup_workflow.decision` | `configured` or explicitly chosen `ask_per_project`. |
 | Configured backup fields | Nonempty `tool`, `method`, and `destination_policy`. The policy can identify an approved default or private location. |
 | `tool_inventory.reviewed` | True after reviewing available tools/interfaces and recording known limitations. Missing tools can be recorded without pretending readiness. |
@@ -90,11 +119,33 @@ The ALCOM application and the separate vrc-get CLI do not expose identical opera
 
 The Tauri handlers are internal GUI implementation interfaces, not a documented stable external automation API or network service.
 No supported public external launch/backup API was found in the reviewed documentation and command definitions.
-For ALCOM's supported workflow, use its GUI through available computer-use tooling or a user operator.
-A version-specific adapter exposing internal commands needs its own compatibility and authority checks. Do not advertise it as a public CLI.
+For assistant-operated ALCOM, follow the [computer-use workflow](#alcom-computer-use-workflow) and its user-chosen fallback rule.
+Do not treat a version-specific internal-command adapter as the selected computer-use method or as a public CLI.
 No command execution, launch, archive creation, or installation is implied by this reference.
 
 Sources: [ALCOM overview](https://vrc-get.anatawa12.com/en/alcom/), [GUI command implementation](https://github.com/vrc-get/vrc-get/blob/gui-v1.1.8/vrc-get-gui/src/commands/project.rs), [GUI argument handling](https://github.com/vrc-get/vrc-get/blob/gui-v1.1.8/vrc-get-gui/src/main.rs), [CLI command tree](https://github.com/vrc-get/vrc-get/blob/v1.9.2/vrc-get/src/commands.rs), and [experimental VCC commands](https://github.com/vrc-get/vrc-get/blob/v1.9.2/vrc-get/src/commands/vcc.rs).
+
+## VCC and the official VPM CLI
+
+For a selected VCC workflow, use the official `vpm` CLI only for supported, authorized operations.
+Coverage checked against the [official CLI documentation](https://vcc.docs.vrchat.com/vpm/cli/) on **2026-10-13**.
+Recheck the installed version and command help before execution. This guidance does not authorize installation.
+
+The following command groups follow `vpm`:
+
+| Operation | Documented commands |
+|---|---|
+| Projects | `new`, `list projects`, `add project`, `remove project`, `check project`, `resolve project`, `migrate legacy`, `migrate 2022` |
+| Packages | `check package`, `add package`, `remove package` |
+| Repositories | `list repos`, `add repo`, `new repo`, `remove repo` |
+| Templates | `install templates`, `list templates`, `check template` |
+| Unity discovery/install | `check hub`, `install hub`, `check unity`, `install unity`, `list unity` |
+
+These commands are not uniformly read-only. Resolve can delete legacy packages, template installation replaces templates, and Unity discovery can update settings.
+No Unity-project launch or project-backup creation command is documented on that page.
+`vpm open backupsFolder` opens a folder only. It does not create a backup.
+The CLI does not control all VCC GUI operations. Do not infer an official MCP interface from CLI support.
+For unsupported operations, use the selected GUI/manual workflow or ask for an alternative without silently changing the user's manager.
 
 ## Safe updates and public packaging
 

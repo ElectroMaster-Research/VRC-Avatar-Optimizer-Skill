@@ -18,6 +18,10 @@ Use the [read-only preference checker](scripts/check_bootstrap.py), or bootstrap
 For missing, incomplete, invalid, or relevant changed setup, follow [bootstrap.md](bootstrap.md) and resolve only needed fields.
 Keep completion state private and per user, never as a shared SKILL.md marker.
 Use the selected Unity-project launcher and backup workflow where verified capabilities support the operation.
+For all users selecting ALCOM, follow the shared [computer-use workflow](bootstrap.md#alcom-computer-use-workflow) for authorized launch, backup, and GUI management.
+If computer use is unavailable, explain the assistant's limitation and ask the user to choose a manual or supported alternative.
+Do not silently substitute a different launch/backup method or imply that the human cannot use ALCOM.
+For a selected VCC workflow, use the [official VPM CLI](bootstrap.md#vcc-and-the-official-vpm-cli) only for its supported, authorized operations.
 Opening a VRChat Unity project is not launching the VRChat client.
 
 Inspect the existing project before choosing optimization methods.

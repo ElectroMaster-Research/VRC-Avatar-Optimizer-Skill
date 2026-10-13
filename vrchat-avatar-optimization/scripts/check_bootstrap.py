@@ -10,6 +10,24 @@ SCHEMA_VERSION = 1
 MAX_BYTES = 256 * 1024
 
 
+def check_alcom_computer_use(availability):
+    """Evaluate supplied capability evidence, not detect tools or execute an operation."""
+    actions = {
+        "available": ("available_for_authorized_step", "use_computer_use_for_authorized_alcom_step"),
+        "unavailable": ("requires_user_choice", "explain_assistant_limitation_and_ask_user_for_alternative"),
+        "unknown": ("needs_capability_check", "check_current_alcom_computer_use_capability"),
+    }
+    if availability not in actions:
+        raise ValueError("Unsupported availability state")
+    status, action = actions[availability]
+    return {
+        "status": status,
+        "next_action": action,
+        "limitation_scope": "assistant_computer_use",
+        "automatic_substitution_allowed": False,
+    }
+
+
 def nonempty(value):
     return isinstance(value, str) and bool(value.strip())
 
@@ -101,10 +119,17 @@ def inspect_file(path):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--file", type=Path, default=Path(__file__).resolve().parents[1] / "user-data" / "preferences.json")
+    parser.add_argument("--alcom-computer-use", choices=("available", "unavailable", "unknown"),
+                        help="Current capability evidence for a selected ALCOM step. Does not probe or launch apps.")
     args = parser.parse_args()
     result = inspect_file(args.file)
+    if args.alcom_computer_use is not None:
+        result["alcom_operation"] = check_alcom_computer_use(args.alcom_computer_use)
     print(json.dumps(result, indent=2))
-    return 0 if result["skip_bootstrap"] else (2 if result["status"] == "invalid" else 1)
+    if result["status"] == "invalid":
+        return 2
+    operation_ready = args.alcom_computer_use in (None, "available")
+    return 0 if result["skip_bootstrap"] and operation_ready else 1
 
 
 if __name__ == "__main__":

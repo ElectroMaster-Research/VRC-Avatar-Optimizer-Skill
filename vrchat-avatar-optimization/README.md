@@ -93,6 +93,8 @@ An authorized diagnostic Build can supply missing processed evidence without req
 Use the reviewed public package for a fresh installation, not another user's working skill directory.
 For updates, preserve existing `user-data/preferences.json` and other private data. Copy public files without replacing the private folder.
 The package includes only a blank example, not a completed personal profile.
+For users selecting ALCOM, assistant-operated launch, backup, and GUI management default to [computer use](bootstrap.md#alcom-computer-use-workflow).
+If that interface is unavailable, ask the user to choose manual ALCOM operation or another supported workflow. Do not substitute silently.
 
 1. Download the repository ZIP or clone the repository. Locate its `vrchat-avatar-optimization` folder.
 2. Copy the complete folder into a skill directory recognized by your Codex version.
