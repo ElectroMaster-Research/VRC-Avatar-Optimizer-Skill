@@ -147,6 +147,48 @@ No Unity-project launch or project-backup creation command is documented on that
 The CLI does not control all VCC GUI operations. Do not infer an official MCP interface from CLI support.
 For unsupported operations, use the selected GUI/manual workflow or ask for an alternative without silently changing the user's manager.
 
+## Unity Hub and Unity command-line workflows
+
+For a user-selected Unity Hub/Unity workflow, prefer supported CLI operations.
+Use them only when installed capabilities, command coverage, and authorization permit.
+Preserve an explicitly selected GUI/manual method. Do not silently switch managers or install a CLI.
+Coverage checked against official Unity documentation on **2026-10-13**. Recheck the installed interface before execution.
+
+| Interface | Documented scope and limits |
+|---|---|
+| Legacy Unity Hub headless CLI | Part of Hub desktop. Supports Editor discovery, installation paths, Editor installation, and module installation. Unity deprecated this CLI starting with Hub 3.18.0 and directs new automation to Unity CLI. |
+| Standalone Unity CLI | Experimental, separate binary. Supports Editor/module management and `unity open <project-path>`. Project opening selects the Editor version recorded in project settings. This does not establish Editor-control compatibility. |
+| Direct Unity Editor executable | Version-specific startup arguments, not the Hub or standalone CLI. Unity 2022.3 documents `-projectPath`, `-batchmode`, and `-executeMethod`. The last option runs a static method from an Editor script. |
+
+Before using a command:
+
+1. Resolve the executable's absolute path and actual identity. Do not assume a command named `unity` identifies the intended interface.
+2. Check its installed version, platform support, and documented help syntax.
+3. Inspect available commands and flags through that interface's help or version-matched official reference.
+4. Compare `ProjectSettings/ProjectVersion.txt` with the required, installed, SDK-compatible Editor version.
+5. Check that the exact command covers the requested operation and its side effects fall within existing authorization.
+6. Check the intended project and running Editor state before launch. Do not start batch mode against an already-open project.
+
+For legacy Hub help, Windows/macOS use `-- --headless help`. Linux uses `--headless help`.
+For the standalone CLI, check `--version`, `--help`, and the selected subcommand's help after resolving its binary.
+For the Editor, use its version-specific reference. Unity 2022.3 supports `-version` without launching the Editor.
+Do not send standalone CLI subcommands to the Editor executable.
+
+Do not infer full GUI coverage or project-backup creation from Editor management or project-opening support.
+No project-backup creation command is established by the references below.
+Use the recorded backup workflow. For unsupported operations, use an already-selected fallback or resolve only the missing alternative.
+Do not upgrade an Editor, install modules/packages, or migrate project configuration without applicable authorization.
+Reuse existing authorization for routine supported operations. This subsection adds no repeated approval gate.
+
+Separate launch/management from control of a running Editor.
+Unity CLI Editor-control features use the Unity Pipeline package, whose documented prerequisite is Unity 6.0 or later.
+Unity's official CLI MCP mode also uses that package.
+These features do not establish verified Editor-control support for Unity 2022.3 VRChat projects.
+Do not replace a working third-party MCP integration on that assumption.
+Follow [Stage 1's MCP prerequisite](SKILL.md#prerequisite-configure-and-verify-unity-mcp) for the actual project's compatible integration and identity checks.
+
+Sources: [legacy Hub CLI reference](https://docs.unity.com/en-us/hub/hub-cli-reference), [standalone Unity CLI](https://docs.unity.com/en-us/unity-cli/use-unity-cli), [Unity 2022.3 Editor arguments](https://docs.unity3d.com/2022.3/Documentation/Manual/EditorCommandLineArguments.html), [Unity Pipeline prerequisites](https://docs.unity.com/en-us/unity-cli/unity-pipeline/unity-pipeline-package), and [official CLI/MCP scope](https://docs.unity.com/en-us/unity-cli/replace-mcp-server-unity-cli).
+
 ## Safe updates and public packaging
 
 Preserve private `user-data` files already present at the installation destination.
