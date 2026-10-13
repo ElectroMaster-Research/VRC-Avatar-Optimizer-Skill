@@ -1,0 +1,5 @@
+__pycache__/
+*.py[cod]
+/user-data/*
+!/user-data/README.md
+!/user-data/preferences.example.json

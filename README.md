@@ -7,7 +7,7 @@ This is a skill package, not a Unity optimizer, avatar asset, or automatic rank 
 
 1. Download this repository as a ZIP, or clone it.
 2. Copy the complete [vrchat-avatar-optimization](vrchat-avatar-optimization) folder into a skill directory recognized by your agent.
-3. Keep `SKILL.md`, `references/`, `scripts/`, and `agents/` together.
+3. Keep the shareable skill files together, including `bootstrap.md` and the generic `user-data` instructions/template.
 4. Invoke `$vrchat-avatar-optimization` with your project, avatar source, platform, target rank, and permitted changes.
 
 For current Codex local discovery, use `<project>/.agents/skills/vrchat-avatar-optimization` or `<user-home>/.agents/skills/vrchat-avatar-optimization`.
@@ -17,6 +17,11 @@ See the official [Build skills guide](https://learn.chatgpt.com/docs/build-skill
 Example audit request:
 
 > Use $vrchat-avatar-optimization to audit this avatar for PC Poor or better. Do not change project assets yet.
+
+First-time [bootstrap](vrchat-avatar-optimization/bootstrap.md) asks about your Unity-project launcher, available tools, and backup workflow.
+Valid completed preferences skip repeated setup questions. Completion state belongs to private per-user data, not the public skill.
+For updates, preserve existing private `user-data` files. Do not replace that folder wholesale or copy another user's preferences.
+Publish or archive reviewed tracked files only. Git ignores do not protect forced staging, manual folder copies, or already-tracked personal data.
 
 ## Workflow
 
@@ -32,13 +37,15 @@ Tool ratings are engineering estimates, not measured effort or permission to ena
 ## Contents and limits
 
 - [SKILL.md](vrchat-avatar-optimization/SKILL.md): main workflow and operation-level policy.
+- [Private user data](vrchat-avatar-optimization/user-data/README.md): storage, update, and privacy rules.
 - [Supported tools](vrchat-avatar-optimization/references/optimization-tools.md): AAO/d4rk capabilities, limitations, and complexity estimates.
 - [Texture measurement](vrchat-avatar-optimization/references/full-texture-measurement.md): complete reference accounting, format arithmetic, and artifact correlation.
 - [Debug and troubleshoot notes](vrchat-avatar-optimization/references/debug-and-troubleshoot-notes.md): versioned diagnostic mechanisms and evidence limits.
 - [Experimental geometry comparison](vrchat-avatar-optimization/experimental-optimization.md): provisional Meshia-primary/meshoptimizer-fallback guidance.
 - [File-evidence helper](vrchat-avatar-optimization/references/file-evidence.md): scoped disk hashes and comparisons, not backups or avatar validation.
 
-The package supplies documentation and one Python helper. It does not supply a general-purpose texture checker or AV3 test harness.
+The package supplies documentation, a file-evidence helper, and a read-only bootstrap-state checker.
+It does not supply a general-purpose texture checker or AV3 test harness.
 Unity, the VRChat SDK, shaders, processors, and appropriate validation tools are separate dependencies.
 Their installation, asset changes, removals, and uploads require the task's applicable authorization.
 LAC is not a recommended optimizer here. Historical diagnostic and bake notes are not a request to install it.

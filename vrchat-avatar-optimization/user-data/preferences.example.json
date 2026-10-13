@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "bootstrap": {
+    "status": "incomplete",
+    "completed_at": null
+  },
+  "project_launcher": {
+    "tool": null,
+    "other_tool": null,
+    "method": null
+  },
+  "backup_workflow": {
+    "decision": null,
+    "tool": null,
+    "method": null,
+    "destination_policy": null
+  },
+  "tool_inventory": {
+    "reviewed": false,
+    "observations": []
+  }
+}

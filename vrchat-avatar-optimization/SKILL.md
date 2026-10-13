@@ -9,9 +9,16 @@ Deliver the requested rank without silently removing retained features or accept
 Rank, behavior, appearance, preservation, and platform eligibility are separate acceptance gates.
 This skill supplies procedures, not permission to install dependencies, remove features, or upload an avatar.
 For installation, capabilities, and use outside Codex, read [README.md](README.md).
-The package contains guidance and a file-evidence helper, not an optimization engine or AV3 test harness.
+The package contains guidance, a file-evidence helper, and a preference checker, not an optimization engine or AV3 test harness.
 
 ## STAGE 1: Investigation and planning
+
+Read existing private `user-data/preferences.json` first. Reuse valid completed preferences and skip repeated bootstrap questions.
+Use the [read-only preference checker](scripts/check_bootstrap.py), or bootstrap's validity rules, before skipping setup.
+For missing, incomplete, invalid, or relevant changed setup, follow [bootstrap.md](bootstrap.md) and resolve only needed fields.
+Keep completion state private and per user, never as a shared SKILL.md marker.
+Use the selected Unity-project launcher and backup workflow where verified capabilities support the operation.
+Opening a VRChat Unity project is not launching the VRChat client.
 
 Inspect the existing project before choosing optimization methods.
 Resolve material ambiguities with the user during this stage.

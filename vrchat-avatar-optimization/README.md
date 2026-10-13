@@ -6,22 +6,26 @@ It is not a turnkey optimizer.
 
 ## Keep the whole folder
 
-Share or install the entire `vrchat-avatar-optimization` folder, not only `SKILL.md`.
+Install the complete shareable `vrchat-avatar-optimization` package, not only `SKILL.md`.
+Exclude actual private `user-data` files when sharing an installed copy. Include only that folder's generic README and example.
 Keep relative file locations unchanged.
 
 - [SKILL.md](SKILL.md) is the agent entrypoint for the three-stage workflow and dependency preflight.
+- [bootstrap.md](bootstrap.md) handles first-time launcher/backup choices and reuse of private completed preferences.
+- [Private user data](user-data/README.md) explains safe storage, update preservation, and publication exclusions.
 - `references/` contains routed procedures, public sources, and a synthetic worked example.
 - [Full texture measurement](references/full-texture-measurement.md) defines retained-reference inventories, identity-aware accounting, and completed-artifact correlation.
 - [Debug and troubleshoot notes](references/debug-and-troubleshoot-notes.md) covers versioned scanner differences, incomplete policies, generated identities, and upload diagnostics.
 - [optimization tools](references/optimization-tools.md) covers AAO and d4rk as supported base-workflow options.
 - [experimental-optimization.md](experimental-optimization.md) covers only the unresolved geometry comparison and provisional Meshia/meshoptimizer strategy.
 - [scripts/file_evidence.py](scripts/file_evidence.py) records and compares file-preservation evidence.
+- [scripts/check_bootstrap.py](scripts/check_bootstrap.py) validates setup state read-only without printing private values.
 - `agents/openai.yaml` supplies optional Codex UI metadata.
 
-The Python helper does not optimize meshes, operate Unity, calculate SDK rank, or provide an AV3 harness.
-It does not back up or restore file contents.
+Neither Python helper optimizes meshes, operates Unity, calculates SDK rank, or provides an AV3 harness.
+The file-evidence helper does not back up or restore file contents. The bootstrap checker does not write preferences.
 The texture measurement references are documentation, not an implemented general-purpose inventory or accounting checker.
-Read [its instructions and limits](references/file-evidence.md) before use.
+Read the [file-evidence instructions](references/file-evidence.md) and [bootstrap instructions](bootstrap.md) before using the corresponding helper.
 
 ## Three-stage workflow
 
@@ -85,6 +89,10 @@ Report SDK estimates, nominal format payload, stored bytes, CPU storage, and act
 An authorized diagnostic Build can supply missing processed evidence without requiring that post-Build inventory in advance.
 
 ## Install and use in Codex
+
+Use the reviewed public package for a fresh installation, not another user's working skill directory.
+For updates, preserve existing `user-data/preferences.json` and other private data. Copy public files without replacing the private folder.
+The package includes only a blank example, not a completed personal profile.
 
 1. Download the repository ZIP or clone the repository. Locate its `vrchat-avatar-optimization` folder.
 2. Copy the complete folder into a skill directory recognized by your Codex version.
