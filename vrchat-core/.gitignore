@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+user-data/*
+!user-data/README.md
+!user-data/preferences.example.json
+preferences.json
+*.local.json

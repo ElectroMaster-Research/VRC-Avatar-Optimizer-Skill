@@ -8,7 +8,7 @@ This preference is not evidence that Meshia needs fewer repairs or that either r
 ## Provisional strategy
 
 Follow the [reducer-selection policy](references/geometry.md#primary-reducer-and-conditional-fallback) for the full decision procedure.
-Apply the [rank-driven stopping rule](SKILL.md#rank-driven-operation-selection-and-stopping) before reduction.
+Apply the [rank-driven stopping rule](GUIDE.md#rank-driven-operation-selection-and-stopping) before reduction.
 Skip reduction when relevant processed metrics already pass. Do not compare reducers merely because both are available.
 
 | Reducer | Role when geometry reduction is necessary | Transition or stopping condition |

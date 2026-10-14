@@ -7,7 +7,7 @@ In Stage 2, use the frozen post-removal baseline, or the initial customized cand
 Record all violations and identify dependencies between proposed changes.
 A texture reduction can affect material ownership. A merge can affect controls, bounds, and blendshape paths.
 Choose changes by expected benefit, reversibility, and retained-feature risk.
-Follow the [rank-driven stopping policy](../SKILL.md#rank-driven-operation-selection-and-stopping) for all categories and custom operations.
+Follow the [rank-driven stopping policy](../GUIDE.md#rank-driven-operation-selection-and-stopping) for all categories and custom operations.
 Measure relevant processed/build-stage metrics before additional trials. Identify actual failures against the requested platform, rank, and user ceilings.
 Normally skip optimization of passing categories. Do not substitute raw authoring warnings for processed measurements.
 Then apply the [operation-level complexity gate](optimization-tools.md#operation-level-complexity-gate), not a blanket score for a tool or category.

@@ -7,7 +7,7 @@ Derive thresholds, masks, row identities, and protection rules from the current 
 
 ## Primary reducer and conditional fallback
 
-Apply the [rank-driven stopping policy](../SKILL.md#rank-driven-operation-selection-and-stopping) before reduction.
+Apply the [rank-driven stopping policy](../GUIDE.md#rank-driven-operation-selection-and-stopping) before reduction.
 Skip reduction when the relevant processed/build-stage metrics already meet the requested platform and rank.
 Use original upstream Meshia by RamType0 as the primary reducer when reduction is necessary.
 Use meshoptimizer as the fallback when concrete quality, preservation, reduction, or compatibility limitations justify it.

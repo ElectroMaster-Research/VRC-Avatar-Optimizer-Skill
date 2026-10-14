@@ -2,7 +2,7 @@
 
 Read this reference only when investigating or planning an explicitly requested persistent processed copy.
 Baking is not a required optimization step. Do not assume it fixes an unexplained metric discrepancy.
-Keep the [rank-driven policy](../SKILL.md#rank-driven-operation-selection-and-stopping) and [safe-Build safeguards](safe-build.md) in force.
+Keep the [rank-driven policy](../GUIDE.md#rank-driven-operation-selection-and-stopping) and [safe-Build safeguards](safe-build.md) in force.
 This reference records documentation and source findings, not an executed bake or restart test.
 LAC appears only for historical-support investigation. It is not restored to the recommended tool list.
 

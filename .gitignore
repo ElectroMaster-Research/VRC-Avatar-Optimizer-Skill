@@ -1,6 +1,8 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
-/vrchat-avatar-optimization/user-data/*
-!/vrchat-avatar-optimization/user-data/README.md
-!/vrchat-avatar-optimization/user-data/preferences.example.json
+/vrchat-core/user-data/*
+!/vrchat-core/user-data/README.md
+!/vrchat-core/user-data/preferences.example.json
+preferences.json
+*.local.json

@@ -1,0 +1,4 @@
+interface:
+  display_name: "VRChat Core"
+  short_description: "Shared setup, avatar optimization, and materials"
+  default_prompt: "Use $vrchat-core to handle my VRChat task with shared setup and the relevant internal specialist."

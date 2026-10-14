@@ -4,41 +4,32 @@ This package guides authorized optimization toward VRChat Poor or better while p
 It supports PC and Android workflows, with separate platform limits and acceptance requirements.
 It is not a turnkey optimizer.
 
-## Keep the whole folder
+## Internal guide and shared package
 
-Install the complete shareable `vrchat-avatar-optimization` package, not only `SKILL.md`.
-Exclude actual private `user-data` files when sharing an installed copy. Include only that folder's generic README and example.
-Keep relative file locations unchanged.
-
-- [SKILL.md](SKILL.md) is the agent entrypoint for the three-stage workflow and dependency preflight.
-- [bootstrap.md](bootstrap.md) handles first-time launcher/backup choices and reuse of private completed preferences.
-- [Private user data](user-data/README.md) explains safe storage, update preservation, and publication exclusions.
-- `references/` contains routed procedures, public sources, and a synthetic worked example.
-- [Full texture measurement](references/full-texture-measurement.md) defines retained-reference inventories, identity-aware accounting, and completed-artifact correlation.
-- [Debug and troubleshoot notes](references/debug-and-troubleshoot-notes.md) covers versioned scanner differences, incomplete policies, generated identities, and upload diagnostics.
-- [optimization tools](references/optimization-tools.md) covers AAO and d4rk as supported base-workflow options.
-- [experimental-optimization.md](experimental-optimization.md) covers only the unresolved geometry comparison and provisional Meshia/meshoptimizer strategy.
-- [scripts/file_evidence.py](scripts/file_evidence.py) records and compares file-preservation evidence.
-- [scripts/check_bootstrap.py](scripts/check_bootstrap.py) validates setup state read-only without printing private values.
-- `agents/openai.yaml` supplies optional Codex UI metadata.
-
-Neither Python helper optimizes meshes, operates Unity, calculates SDK rank, or provides an AV3 harness.
-The file-evidence helper does not back up or restore file contents. The bootstrap checker does not write preferences.
-The texture measurement references are documentation, not an implemented general-purpose inventory or accounting checker.
-Read the [file-evidence instructions](references/file-evidence.md) and [bootstrap instructions](bootstrap.md) before using the corresponding helper.
+Install the complete [vrchat-core package](../../README.md), not this specialist alone.
+The [core entrypoint](../../SKILL.md) owns shared bootstrap, private preferences, Unity setup, and evidence helpers.
+This internal guide has no independent discovery metadata.
+Read [GUIDE.md](GUIDE.md) for the three-stage workflow and dependency preflight.
+Use the specialist references for tools, texture measurement, geometry, Build evidence, and synthetic examples.
+Use [experimental-optimization.md](experimental-optimization.md) for the unresolved reducer comparison.
+The package does not supply an optimizer, AV3 harness, or general texture-accounting engine.
+Disk hashes do not create backups. Capture metrics do not establish visual acceptance.
 
 ## Three-stage workflow
 
-1. [STAGE 1: Investigation and planning](SKILL.md#stage-1-investigation-and-planning) resolves identity, dependencies, feasibility, contributors, tradeoffs, and progress preference.
-2. [STAGE 2: Execution, verification and repair](SKILL.md#stage-2-execution-verification-and-repair) implements the approved plan through tests and repairs.
-3. [STAGE 3: Final report](SKILL.md#stage-3-final-report) delivers matched before/after visuals, metrics, quality comparisons, and unresolved limits.
+1. [STAGE 1: Investigation and planning](GUIDE.md#stage-1-investigation-and-planning) resolves identity, dependencies, feasibility, contributors, tradeoffs, and progress preference.
+2. [STAGE 2: Execution, verification and repair](GUIDE.md#stage-2-execution-verification-and-repair) implements the approved plan through tests and repairs.
+3. [STAGE 3: Final report](GUIDE.md#stage-3-final-report) delivers scoped evidence and unresolved limits.
+
+For implemented optimization, include matched before/after visuals, metrics, and quality comparisons.
+For read-only audits, report observations and missing evidence without unauthorized Builds or capture fixtures.
 
 Stage 1 records protected runtime features and toggles, including default-disabled meshes.
 Retention and optimization are the default. Removal is an optional alternative that requires explicit authorization.
 The user acknowledges quality and behavior tradeoffs before execution.
 Routine implementation, verification, and repairs then continue within that approved scope without repeated approval requests.
 
-The [rank-driven policy](SKILL.md#rank-driven-operation-selection-and-stopping) applies to all tools and custom optimization operations.
+The [rank-driven policy](GUIDE.md#rank-driven-operation-selection-and-stopping) applies to all tools and custom optimization operations.
 Measure processed/build-stage metrics first. Select only operations needed for actual gaps against the requested platform and rank.
 Normally skip passing categories and recheck necessary coupled changes.
 Stop optimization experiments when the entire avatar meets target, while completing required final verification and save/reload.
@@ -66,7 +57,8 @@ Preserve notification preferences, avoid duplicate monitors, and retire task-own
 Final-report-only mode suppresses optional chatter and questions. It does not expand authority or remove required checks.
 Higher-priority communication and tool constraints still apply.
 
-Final reports require matched still pictures or animated GIFs for relevant motion, including representative fixes when they occur.
+Final reports for implemented optimization require matched still pictures or animated GIFs for relevant motion.
+Include representative fixes when they occur.
 Missing capture evidence prevents a complete visual acceptance claim. A text-only summary does not replace it.
 Report editable authoring-hierarchy SDK metrics separately from final processed-build metrics.
 Build-time AAO processing can leave authoring warnings visible. Rank claims must identify the measured artifact and retained runtime features.
@@ -88,40 +80,20 @@ Keep preserved/skipped textures in the budget. An incomplete selection list must
 Report SDK estimates, nominal format payload, stored bytes, CPU storage, and actual residency separately.
 An authorized diagnostic Build can supply missing processed evidence without requiring that post-Build inventory in advance.
 
-## Install and use in Codex
+## Install and use
 
-Use the reviewed public package for a fresh installation, not another user's working skill directory.
-For updates, preserve existing `user-data/preferences.json` and other private data. Copy public files without replacing the private folder.
-The package includes only a blank example, not a completed personal profile.
-For users selecting ALCOM, assistant-operated launch, backup, and GUI management default to [computer use](bootstrap.md#alcom-computer-use-workflow).
-If that interface is unavailable, ask the user to choose manual ALCOM operation or another supported workflow. Do not substitute silently.
-
-1. Download the repository ZIP or clone the repository. Locate its `vrchat-avatar-optimization` folder.
-2. Copy the complete folder into a skill directory recognized by your Codex version.
-3. Confirm that `SKILL.md` sits directly inside `vrchat-avatar-optimization`.
-4. Invoke `$vrchat-avatar-optimization` with the project, source avatar, platform, and acceptance requirements.
-5. Check skill discovery. If the skill does not appear, restart Codex and check the installation path.
-
-The [current public guide](https://learn.chatgpt.com/docs/build-skills) lists `.agents/skills` for project and user installations.
-For project scope, use `<project>/.agents/skills/vrchat-avatar-optimization`.
-For user scope, use `<user-home>/.agents/skills/vrchat-avatar-optimization`.
-Managed or version-specific hosts can use another recognized location. Follow that host's instructions.
-Do not install duplicate copies with the same skill name in overlapping discovery locations.
-Installation guidance was checked on 2026-10-12. Recheck the public guide when needed.
-
-Example request:
-
-> Use $vrchat-avatar-optimization to audit this avatar for PC Poor or better. Do not change project assets yet.
-
-An implementation request must separately state what may change, which source must remain intact, and what acceptance requires.
-Skill discovery does not grant project, installation, upload, or publication permission.
+Use the [core README](../../README.md) for installation, migration, updates, and discovery limits.
+Invoke `$vrchat-core` with the project, avatar source, platform, rank, and permitted changes.
+The core routes rank work to this internal specialist.
+Use the [shared private store](../../user-data/README.md) and [bootstrap](../../bootstrap.md).
+Do not install this folder as another skill.
 
 ## Capabilities and dependencies
 
 The agent must read project files and official documentation, inspect dependencies, and distinguish observations from unverified claims.
 Implementation also requires authorized file editing, recovery, and a supported way to operate the intended Unity project.
 
-Complete the [Unity MCP prerequisite](SKILL.md#prerequisite-configure-and-verify-unity-mcp) before substantive Unity inspection, edits, or tests.
+Complete the [shared Unity MCP prerequisite](../../SKILL.md#prerequisite-configure-and-verify-unity-mcp) before substantive Unity inspection, edits, or tests.
 Configure or reuse a compatible connection under applicable authorization.
 Verify the intended project and editor through harmless, read-only MCP queries.
 This prerequisite does not require MCP for every action.
@@ -141,7 +113,8 @@ Each selected tool still requires its own supported platform.
 | Referenced shaders and authoring processors | When the retained avatar depends on them |
 | Compatible AV3 emulator and a working test procedure | When the user requires AV3 acceptance |
 | Blender or another geometry tool | Only when the selected method needs it |
-| Python 3.9+ | Only for the bundled helper, which uses the standard library |
+| Python 3.9+ | Disk evidence and bootstrap checks use the standard library |
+| Python 3.10+ and Pillow | Capture comparison and the complete shared test suite |
 | Image tools, tracking devices, OSC, audio, or a client | Only for claims that require those tools or systems |
 
 No runtime harness, Unity project, avatar, shader package, or geometry optimizer is bundled.
@@ -153,9 +126,9 @@ Missing required tools leave the corresponding acceptance gate blocked.
 
 ## Use outside Codex
 
-Give the agent the whole folder and direct it to read `SKILL.md` first.
-Then read only the routed references relevant to the task.
-Other agents can ignore `agents/openai.yaml` and treat `$vrchat-avatar-optimization` as a reference to this entrypoint.
+Give the agent the complete core folder. Read its `SKILL.md` first.
+Then read this guide and only the relevant routed references.
+Other agents can ignore the core's `agents/openai.yaml` metadata.
 Keep the host's instruction hierarchy, permissions, and user acceptance criteria in force.
 Without Unity or tool access, use the documents for an audit or human-guided procedure, not a claimed implementation.
 

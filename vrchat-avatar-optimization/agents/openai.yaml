@@ -1,4 +1,0 @@
-interface:
-  display_name: "VRChat Avatar Optimization"
-  short_description: "Optimize VRChat avatars with preservation checks"
-  default_prompt: "Use $vrchat-avatar-optimization to optimize this avatar to Poor or better while preserving retained behavior and appearance."

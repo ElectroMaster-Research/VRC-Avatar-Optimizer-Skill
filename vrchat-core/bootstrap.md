@@ -1,7 +1,9 @@
 # First-time setup and private preferences
 
-Read existing `user-data/preferences.json` before asking setup questions.
-This file belongs to the current user's local installation. Never read the example as completed personal setup.
+Read the existing shared private `preferences.json` before asking setup questions.
+Resolve its path through [private storage rules](user-data/README.md).
+Both specialists use this store. The package-local `user-data` folder contains public templates only.
+This file belongs to the current user, outside the distributable installation. Never read the example as completed personal setup.
 Keep [private data](user-data/README.md) separate from the shareable skill and its public Git history.
 Opening a VRChat Unity project means starting Unity Editor with that project, not launching the VRChat client.
 
@@ -48,13 +50,15 @@ Do not run a launch or backup merely to complete this questionnaire.
 Use the selected tools when their verified capabilities support the operation.
 If the selected tool cannot perform it through the available interface, explain the limitation and resolve an alternative only when needed.
 Do not silently switch launchers, invent command flags, install packages, or use an internal GUI command as a public API.
-Resolve the exact project and required Unity version separately under [Stage 1](SKILL.md#stage-1-investigation-and-planning).
-Verify the recovery artifact and source ownership before later authorized mutation under [ownership and baseline](references/ownership-and-baseline.md).
+Resolve the exact project and required Unity version separately under [core identity checks](SKILL.md#prerequisite-configure-and-verify-unity-mcp).
+Verify the recovery artifact and source ownership before later authorized mutation under [core preservation rules](SKILL.md#common-preservation-and-evidence).
 
 ### ALCOM computer-use workflow
 
 For all users selecting upstream ALCOM, the shared default for assistant-operated steps is computer use.
 Use computer use to operate ALCOM for authorized project launch, backup, and related GUI management.
+Follow [automated launch and bounded recovery](references/alcom-launch-recovery.md) for readiness checks and correct window targeting.
+Preserve the actual ALCOM GUI Backup-button operation when selected.
 Check that the current interface can operate ALCOM's native GUI, not merely a web browser.
 Record the applicable private method as `computer_use`. Reuse a resolved choice without asking it again.
 Preserve unknown backup settings, destination policy, and other unanswered preferences.
@@ -75,7 +79,8 @@ python -B scripts/check_bootstrap.py --alcom-computer-use unavailable
 
 Use `available`, `unavailable`, or `unknown` according to current evidence, not a stale installation record.
 The helper does not discover tools, grant authorization, or operate ALCOM.
-Its `alcom_operation` result requires a user choice when unavailable and a capability check when unknown.
+Its `alcom_operation` result requires fallback resolution when unavailable and a capability check when unknown.
+An existing authorized fallback satisfies that resolution. Ask only when the alternative remains undecided.
 Either condition returns exit 1 even when saved preferences are complete. It does not invalidate those preferences or repeat bootstrap.
 Only an available interface and applicable task authorization permit the assistant's actual ALCOM operation through computer use.
 
@@ -185,14 +190,14 @@ Unity CLI Editor-control features use the Unity Pipeline package, whose document
 Unity's official CLI MCP mode also uses that package.
 These features do not establish verified Editor-control support for Unity 2022.3 VRChat projects.
 Do not replace a working third-party MCP integration on that assumption.
-Follow [Stage 1's MCP prerequisite](SKILL.md#prerequisite-configure-and-verify-unity-mcp) for the actual project's compatible integration and identity checks.
+Follow [the core MCP prerequisite](SKILL.md#prerequisite-configure-and-verify-unity-mcp) for the actual project's compatible integration and identity checks.
 
 Sources: [legacy Hub CLI reference](https://docs.unity.com/en-us/hub/hub-cli-reference), [standalone Unity CLI](https://docs.unity.com/en-us/unity-cli/use-unity-cli), [Unity 2022.3 Editor arguments](https://docs.unity3d.com/2022.3/Documentation/Manual/EditorCommandLineArguments.html), [Unity Pipeline prerequisites](https://docs.unity.com/en-us/unity-cli/unity-pipeline/unity-pipeline-package), and [official CLI/MCP scope](https://docs.unity.com/en-us/unity-cli/replace-mcp-server-unity-cli).
 
 ## Safe updates and public packaging
 
-Preserve private `user-data` files already present at the installation destination.
-Update reviewed public files individually. Do not mirror-delete the skill root or replace its private folder from a release archive.
+Preserve the shared private directory and any legacy private files during updates.
+Update reviewed public files individually. Do not mirror-delete the skill root or replace private files from a release archive.
 Keep the generic README and example current without replacing actual preferences.
 Do not import the publisher's completion state or personal configuration into another user's installation.
 

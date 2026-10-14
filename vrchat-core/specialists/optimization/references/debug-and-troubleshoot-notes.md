@@ -28,7 +28,8 @@ Do not use similar totals, display names, or embedded prefab IDs as upload ident
 
 ## User-reported final-artifact agreement
 
-In one final-upload validation, a user reported a server display of 146.51 MB, matching the final-bundle material-texture estimate of 146.51 MiB.
+In one final-upload validation, a user reported agreement between the server display and the final-bundle material-texture estimate.
+The public guide omits the case-specific numeric value. Retain exact values only in authorized private evidence.
 MB is the reported UI label. MiB is the calculated unit, and the agreement is at the displayed two-decimal precision.
 This is user-reported server validation, not independently captured telemetry.
 It supports close agreement for that final-artifact estimator in this case, not universal byte-exactness or measured resident GPU memory.

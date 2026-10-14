@@ -117,7 +117,9 @@ Keep initially disabled, runtime-reachable toggles in the retained-feature evide
 
 ## Report the build pipeline and metric comparison
 
-Every final optimization report must compare editable authoring SDK metrics with measured final processed SDK Build metrics.
+Every final report for implemented optimization must compare editable authoring SDK metrics with measured final processed SDK Build metrics.
+For read-only audits, follow the [audit reporting boundary](../GUIDE.md#stage-3-final-report).
+Label unavailable measurements without creating unauthorized Builds or capture fixtures.
 This requirement applies to every relevant tool, custom pass, and changed metric category.
 Use the [processor map](optimization-tools.md#other-processors-and-metric-categories) to investigate mechanisms beyond AAO or bones.
 For each difference, report authoring value **X**, processed value **Y**, units, and category ratings.
@@ -255,7 +257,7 @@ A serialized snapshot proves only the state captured at its recorded time.
 Require fresh reload evidence and clean Edit mode before claiming a completed editor handoff.
 
 Report final metrics, fresh sizes, saved artifact location, passed gates, accepted differences, failed diagnostics, and unverified behavior.
-Include the [Stage 3 visual report](../SKILL.md#stage-3-final-report) with matched before/after pictures or relevant motion GIFs.
+Include the [Stage 3 visual report](../GUIDE.md#stage-3-final-report) with matched before/after pictures or relevant motion GIFs.
 Include representative verification fixes when they occurred, concrete tradeoffs, and an overall quality comparison.
 Report unavailable visual evidence as an incomplete acceptance gate, not a text-only substitute for completion.
 Identify reused tests separately from fresh executions.

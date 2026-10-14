@@ -2,14 +2,14 @@
 
 AAO Avatar Optimizer and d4rk Avatar Optimizer are established supported options in the base workflow.
 This status does not require installation or enablement and does not prove that every feature preserves appearance.
-Use only operations justified by the [rank-driven policy](../SKILL.md#rank-driven-operation-selection-and-stopping) and the operation-level complexity gate below.
+Use only operations justified by the [rank-driven policy](../GUIDE.md#rank-driven-operation-selection-and-stopping) and the operation-level complexity gate below.
 Check current processed/build-stage metrics before adding an operation.
 If AAO already meets the target, do not add d4rk for comparison or further numerical savings.
 Keep unused operations disabled. Preserve required processors whose output makes the build pass.
 
 Source review: **2026-10-08**. Recheck selected releases, dependencies, compatibility, and installed APIs before use.
 Capability cross-check: **2026-10-11**, against installed AAO 1.9.20 and d4rk 4.6.0 documentation and source.
-Follow [Stage 1 dependency preflight](../SKILL.md#dependency-preflight--before-optimization) within the existing authorization.
+Follow [Stage 1 dependency preflight](../GUIDE.md#dependency-preflight--before-optimization) within the existing authorization.
 The tool list does not authorize package changes, feature removal, or upload.
 
 ## Operation-level complexity gate
@@ -65,8 +65,8 @@ Measure that budget separately, and preserve its declarations and consumers unle
 
 | Supported option | Applicable Stage 2 areas | Capability subject to the operation-level gate |
 |---|---|---|
-| AAO Avatar Optimizer | [Textures](../SKILL.md#textures), [skinned renderers/materials](../SKILL.md#skinned-mesh-renderers-and-materials), [bones/physics](../SKILL.md#bones-and-physics) | Selected texture caps, compatible renderer/submesh consolidation, and dependency-aware cleanup. |
-| d4rk Avatar Optimizer | [Skinned renderers/materials](../SKILL.md#skinned-mesh-renderers-and-materials), [bones/physics](../SKILL.md#bones-and-physics) | Compatible cleanup/merging and eligible controller work. Shader-toggle consolidation requires separate targeted validation. |
+| AAO Avatar Optimizer | [Textures](../GUIDE.md#textures), [skinned renderers/materials](../GUIDE.md#skinned-mesh-renderers-and-materials), [bones/physics](../GUIDE.md#bones-and-physics) | Selected texture caps, compatible renderer/submesh consolidation, and dependency-aware cleanup. |
+| d4rk Avatar Optimizer | [Skinned renderers/materials](../GUIDE.md#skinned-mesh-renderers-and-materials), [bones/physics](../GUIDE.md#bones-and-physics) | Compatible cleanup/merging and eligible controller work. Shader-toggle consolidation requires separate targeted validation. |
 
 Prefer the [explicit TextureImporter procedure](resource-optimization.md#textures-and-effective-memory) for texture optimization.
 AAO texture caps are a capability, not an exception to the complexity gate.
@@ -278,7 +278,7 @@ Keep failed trials, incomplete checks, and accepted limitations explicit.
 Use the [build comparison](safe-build.md#report-the-build-pipeline-and-metric-comparison) to report concrete effects and artifact-specific metrics.
 These optimizer passes run during BUILD before upload, not inside the VRChat client.
 A preview does not establish networking, hardware behavior, or final build rank.
-Follow [Stage 3](../SKILL.md#stage-3-final-report) for matched visuals and the final report.
+Follow [Stage 3](../GUIDE.md#stage-3-final-report) for matched visuals and the final report.
 Keep project-specific historical evidence outside the portable skill.
 
 ## Manual processing and saved copies

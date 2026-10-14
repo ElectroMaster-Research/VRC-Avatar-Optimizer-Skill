@@ -1,57 +1,23 @@
----
-name: vrchat-avatar-optimization
-description: Optimize and validate VRChat avatars for Poor or better performance rank. Use for avatar performance audits or authorized optimization of geometry, textures, renderers, materials, bones, or dynamics while preserving retained appearance and controls. Distinguish PC from Android targets. Do not use for unrelated avatar feature development.
----
-
 # VRChat Avatar Optimization
 
 Deliver the requested rank without silently removing retained features or accepting visual regressions.
 Rank, behavior, appearance, preservation, and platform eligibility are separate acceptance gates.
 This skill supplies procedures, not permission to install dependencies, remove features, or upload an avatar.
-For installation, capabilities, and use outside Codex, read [README.md](README.md).
+For specialist context, read [OVERVIEW.md](OVERVIEW.md).
+For installation and common setup, read the [core README](../../README.md).
 The package contains guidance, a file-evidence helper, and a preference checker, not an optimization engine or AV3 test harness.
 
 ## STAGE 1: Investigation and planning
 
-Read existing private `user-data/preferences.json` first. Reuse valid completed preferences and skip repeated bootstrap questions.
-Use the [read-only preference checker](scripts/check_bootstrap.py), or bootstrap's validity rules, before skipping setup.
-For missing, incomplete, invalid, or relevant changed setup, follow [bootstrap.md](bootstrap.md) and resolve only needed fields.
-Keep completion state private and per user, never as a shared SKILL.md marker.
-Use the selected Unity-project launcher and backup workflow where verified capabilities support the operation.
-For all users selecting ALCOM, follow the shared [computer-use workflow](bootstrap.md#alcom-computer-use-workflow) for authorized launch, backup, and GUI management.
-If computer use is unavailable, explain the assistant's limitation and ask the user to choose a manual or supported alternative.
-Do not silently substitute a different launch/backup method or imply that the human cannot use ALCOM.
-For a selected VCC workflow, use the [official VPM CLI](bootstrap.md#vcc-and-the-official-vpm-cli) only for its supported, authorized operations.
-For a selected Unity Hub/Unity workflow, follow the [CLI selection and compatibility rules](bootstrap.md#unity-hub-and-unity-command-line-workflows).
-Opening a VRChat Unity project is not launching the VRChat client.
-
+Use the [core](../../SKILL.md) for shared setup, project identity, authorization, and preservation.
+Read the [shared private store](../../user-data/README.md) before asking setup questions.
+Follow [bootstrap](../../bootstrap.md) only for missing or affected setup.
+Complete the [shared Unity MCP prerequisite](../../SKILL.md#prerequisite-configure-and-verify-unity-mcp) before dependent Unity work.
+Do not maintain a specialist preference store or repeat resolved launcher and backup questions.
 Inspect the existing project before choosing optimization methods.
-Resolve material ambiguities with the user during this stage.
-Record decisions once. Reuse applicable authorization instead of requesting it again during execution.
-For audit-only requests, inspect and report without optimization or side-effecting SDK helpers.
-
-### Prerequisite: configure and verify Unity MCP
-
-Complete Unity MCP setup and identity verification before substantive Unity inspection, edits, or tests.
-Prefer MCP for supported programmatic work to avoid continuous desktop control.
-This prerequisite does not require MCP for every action.
-
-1. Identify the intended Unity project by absolute path and the intended editor instance.
-2. Check available Unity MCP tools, connection state, and connected editor instances.
-3. Check installed integration versions, compatibility, and permissions before setup changes. Request any missing authorization for package or client configuration changes.
-4. Reuse a working connection after verifying its identity. Otherwise, configure or connect MCP for the intended project within authorization. Do not reinstall a working integration unnecessarily. Do not switch projects without authorization.
-5. Run harmless, read-only MCP queries for the project path and editor or instance identity. Confirm both match the intended target. A listed tool or installed package does not prove a working connection.
-
-Computer use remains allowed for setup, UI-only operations, visual inspection, and appropriate fallback.
-
-If MCP setup or verification fails, report the concrete blocker and the available computer-use route.
-Pause dependent Unity work until setup succeeds or the user explicitly authorizes proceeding without verified MCP.
-Do not request authorization again when the user already authorized that fallback.
-For an authorized fallback, verify the project and editor through live UI evidence.
-State which MCP-dependent checks remain unavailable.
-
-Safe offline work may continue within scope.
-Do not silently bypass this prerequisite or treat computer use as forbidden.
+Resolve material ambiguities during Stage 1. Record decisions once.
+Reuse applicable authorization during execution.
+For audits, inspect and report without optimization or side-effecting SDK helpers.
 
 ### Scope and source
 
@@ -269,6 +235,9 @@ Follow the order required by the selected dependency-aware plan and build proces
 
 ### Textures
 
+For source-pixel changes, follow the [shared texture editing policy](../../references/texture-editing.md).
+Use the materials guide when appearance work needs its procedures.
+
 Read the [texture procedure](references/resource-optimization.md#textures-and-effective-memory).
 Base changes on the [complete retained inventory](references/full-texture-measurement.md#8-prevent-incomplete-texture-budgets), including animated alternatives and non-material partitions.
 For complete final-artifact accounting, default to a [small positive texture buffer](references/full-texture-measurement.md#choose-a-small-evidence-based-buffer) below the applicable ceiling.
@@ -419,8 +388,14 @@ Do not upload without separate explicit authorization.
 
 ## STAGE 3: Final report
 
+For a read-only audit, report measured observations, existing evidence, missing evidence, and proposed work.
+Do not run a Build, create a candidate, or create mutating capture fixtures solely to satisfy this report section.
+Label unavailable after-state and processed-build measurements explicitly.
+Do not claim implemented optimization or verified final rank from an audit estimate.
+The before/after and final-build completion gates below apply to implemented optimization.
+
 Keep an immutable evidence directory outside imported project assets where practical.
-Use the optional [file-evidence helper](references/file-evidence.md) for disk hashes and scoped change detection.
+Use the optional [file-evidence helper](../../references/file-evidence.md) for disk hashes and scoped change detection.
 It cannot inspect unsaved Unity objects or prove avatar acceptance.
 
 Always include before/after visual evidence in the final report.
@@ -448,7 +423,7 @@ Report these items:
 - Whether work is complete, blocked on a named dependency, or waiting for a specific user decision.
 
 Highlight concrete changes, retained runtime features and toggles, appearance/behavior tradeoffs, and the overall quality comparison.
-The [build comparison and stage labels](references/safe-build.md#report-the-build-pipeline-and-metric-comparison) are mandatory in every final optimization report.
+The [build comparison and stage labels](references/safe-build.md#report-the-build-pipeline-and-metric-comparison) are mandatory in every final report for implemented optimization.
 Report editable authoring SDK value X and measured final processed value Y for each relevant category.
 Identify the responsible processor and concrete operation when established. State unknown attribution explicitly.
 Explain rank differences and remaining authoring warnings even when verified final output meets the target.
