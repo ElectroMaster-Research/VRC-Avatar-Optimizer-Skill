@@ -33,7 +33,7 @@ Read only the references relevant to the requested work:
 
 1. Verify the connected Unity project and target avatar through live editor evidence.
 2. Resolve renderer slots, material GUIDs, prefab defaults, and scene overrides.
-3. Identify the intended reference through those bindings, not product or file names.
+3. If the user requests an existing appearance reference, identify it through those bindings or the supplied visual evidence.
 4. Separate the current customized baseline from pristine source references.
 5. Record shared consumers, including inactive wardrobe and other avatars.
 6. Capture recoverable files and relevant live state before approved changes.
@@ -45,6 +45,47 @@ A retained texture or legacy field does not prove that its feature is enabled.
 Keep evidence outside imported project assets when practical.
 Record dirty scenes and assets separately from saved files.
 Do not save or reload unrelated work to simplify a test.
+
+## Match an existing appearance only when requested
+
+Use this workflow only when the user explicitly requests a color or appearance match to an existing reference.
+The reference can be a mesh, material, toggle state, or supplied visual reference.
+For an ordinary color change, follow the requested color without inventing a reference or brightness target.
+Do not add compensating changes to an ordinary color edit.
+An explicit property or numeric-value instruction takes precedence over inferred visual matching.
+Ask only when ambiguity materially affects the requested result.
+
+1. Define the source reference and the target surface or region to change.
+   Record their material bindings and relevant toggle, animation, and effect states.
+   Identify which appearance features must match and which details or channels must remain.
+2. Inspect the effective color path before choosing adjustments.
+   Check source albedo, multiplicative tint, layer blending, masks, and shader shadow or lighting response.
+   Albedo is the surface's base color before lighting.
+   Check relevant brightness influences, including normals, MatCap, reflections, emission, and light floors.
+   Use installed shader evidence to establish which features actually contribute in the selected regions.
+   Equal tint values do not establish equal rendered hue or brightness.
+   Do not assume a repeated tint application without tracing the effective shader operations.
+3. Compare rendered hue and brightness under matched representative lighting.
+   Follow [matched visuals](references/matched-visuals.md) for capture setup, lighting selection, image validity, and focused sensitivity tests.
+   Compare the reference and target in the same frame when practical, or in equivalent documented states.
+   For supplied images, record unknown lighting or color-management conditions that limit the comparison.
+   Use comparable surface regions when measurements help diagnose a difference.
+   Preserve occlusion in diagnostic masks and state the sampling limits.
+   Do not treat sampled luminance as proof of whole-surface equality.
+4. Make scoped adjustments within the authorized implementation.
+   Calibrate each target independently when its texture or lighting response differs.
+   Preserve texture detail, masks, and other intended channels or features.
+   Use the bounded implementation rules below and the shared texture policy when applicable.
+   Do not reuse another material's gains as a universal correction formula.
+5. Validate through [proportional validation](references/validation.md) and the comparison and delivery rules below.
+   Report residual differences across lighting conditions, including strong backlighting when relevant.
+   Do not claim an exact match across different geometry or normal orientation from one successful lighting condition.
+
+Examples:
+
+- "Match the ribbons to the existing vest navy." Compare rendered hue and brightness, then adjust the ribbons within scope.
+- "Make the ribbons navy." Apply the requested color without inventing a vest reference or compensating brightness target.
+- "Set `_Color` to `(0.2, 0.3, 0.5, 1)`." Set that property as instructed without adding inferred brightness compensation.
 
 ## Implement in bounded stages
 
