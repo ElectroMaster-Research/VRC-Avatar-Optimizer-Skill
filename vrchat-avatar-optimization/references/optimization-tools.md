@@ -161,6 +161,89 @@ Validate actual visibility transitions, retained dynamics, and each affected SDK
 
 Sources: [d4rk settings and mandatory operations](https://github.com/d4rkc0d3r/d4rkAvatarOptimizer/blob/v4.6.0/README.md#disable-phys-bones-when-unused) and [dependency/collider handling](https://github.com/d4rkc0d3r/d4rkAvatarOptimizer/blob/v4.6.0/Editor/d4rkAvatarOptimizer.cs).
 
+## Modular Avatar: Merge Armature
+
+Modular Avatar is an avatar assembly processor. Its configured operations can also change performance metrics.
+Inspect an existing Merge Armature configuration before proposing additional bone reduction.
+Do not install or enable it solely because another avatar showed a reduction.
+
+The [Merge Armature documentation](https://modular-avatar.nadena.dev/docs/reference/merge-armature) describes name-based matching from an outfit hierarchy to a selected base-avatar hierarchy.
+Matching removes the configured prefix and suffix from each source bone name.
+An eligible match can make the outfit renderer reference the existing base transform.
+Unmatched bones remain separate beneath the corresponding parent.
+Matching names alone do not guarantee replacement or correct outfit fit.
+The component targets a particular avatar setup, not arbitrary skeletons.
+Position Lock provides edit-mode following. It does not prove that the final merge occurred.
+
+### Reference replacement and metric effects
+
+Source review: **2026-10-13**, Modular Avatar **1.18.7**.
+The NDMF `MergeArmaturePluginPass` invokes `MergeArmatureHook` during editor-side processing.
+The hook identifies matched bones and marks eligible transforms for retargeting.
+`BoneDatabase.GetRetargetedBone` follows eligible parent replacements and stops at retained transforms.
+`MeshRetargeter.RetargetBones` clones the renderer's bone array and replaces eligible references at the same indices.
+It adjusts each affected bindpose with `newTarget.worldToLocalMatrix * oldBone.localToWorldMatrix * oldBindPose`.
+It then assigns the retargeted mesh and bone array to the renderer.
+
+This operation can reduce the union of unique referenced transforms without shortening the arrays or removing vertex weights.
+The SDK's [bone-count definition](rank-and-platform.md#definitions-and-boundary-comparisons) determines the reported reduction.
+Count unique references, array entries, positively weighted influences, and hierarchy transforms separately.
+A lower SDK bone count does not establish an equal number of deleted hierarchy objects.
+Merge Armature does not itself establish renderer, material-slot, triangle, or texture savings.
+Measure any such changes and identify their actual processor.
+
+Sources: [pass registration](https://github.com/bdunderscore/modular-avatar/blob/1.18.7/Editor/PluginDefinition/PluginDefinition.cs), [merge and retention](https://github.com/bdunderscore/modular-avatar/blob/1.18.7/Editor/MergeArmatureHook.cs), [reference and bindpose replacement](https://github.com/bdunderscore/modular-avatar/blob/1.18.7/Editor/MeshRetargeter.cs).
+
+### Conditions, retention, and validation
+
+Inspect these inputs and limits in the installed version:
+
+- Resolve the source root, Merge Target, prefix, suffix, and nested merge order.
+- Record Position Lock and name-collision settings separately from the measured merge result.
+- Inspect additional components, constraints, animation bindings, and references from retained systems.
+- Inspect PhysBone chains, colliders, contacts, and bone proxies before predicting reference replacement.
+- Check unmatched names, retained bones, generated intermediate objects, and root-bone position or scale differences.
+
+In 1.18.7, constraints and referenced physics/contact transforms can require retention.
+Additional components can require intermediate objects instead of complete collapse into a base bone.
+PhysBone eligibility checks can prevent descendant merging. Some invalid humanoid interactions produce build errors.
+The hook also contains duplicate-PhysBone handling, subject to its compatibility checks.
+Do not infer fewer PhysBones, affected transforms, colliders, or collision checks from a bone-reference reduction.
+Do not claim that all matching bones merge or that every avatar receives the same reduction.
+
+Capture source-to-final transform mappings when explaining a bone-count difference.
+Check renderer/index correspondence and the actual processed mesh references.
+Validate bindposes, skinning, animation paths, retained toggles, attachments, constraints, and affected dynamics within the required acceptance scope.
+Equal weights or indices alone do not prove equivalent animated deformation.
+Report any imported meshes or motion states outside verification coverage.
+Use the [mandatory build comparison](safe-build.md#report-the-build-pipeline-and-metric-comparison) for final reporting.
+
+## Other processors and metric categories
+
+The following map identifies possible mechanisms, not promised savings or additional tool recommendations.
+Existing AAO/d4rk eligibility rules still apply. LAC remains historical-support guidance only.
+Recheck installed versions, enabled operations, and actual output before attributing a change.
+
+| Processor or operation | Metrics that can differ after processing | Attribution and limits |
+|---|---|---|
+| AAO compatible merging and dependency cleanup | Renderers, submeshes/material slots, bones, triangles, textures, and physics categories | Separate merges from removed unused objects, removed geometry, and texture operations. Record coupled effects. Use the AAO sections above. |
+| d4rk compatible merging, shader rewriting, and cleanup | Renderers, material slots, referenced bones, geometry, retained textures, and eligible physics components | Shader texture arrays can change retained storage. NaNimation can add bones. Visibility-linked disabling does not prove component-count savings. Use the d4rk sections above. |
+| Modular Avatar Merge Armature | Unique referenced bones and eligible duplicate PhysBones | Use exact mappings and retention evidence. Do not attribute unrelated pipeline savings to this component. |
+| Historical LAC compression or optional lilToon baking | Generated textures, cloned materials, texture payload, and bundle size | Remapped animation references and retained originals affect totals. Freeze stores policy, not baked output. See [historical LAC mechanics](manual-bake.md#lac-historical-support-freeze-is-not-baking). |
+| NDMF | Output from its registered plugins | NDMF orders and hosts passes. Name the plugin and operation responsible for each transformation. Manual processing is not the complete SDK callback chain. |
+| Other configured generators, SDK stripping, or custom passes | Categories affected by generated, replaced, or stripped objects and assets | Inspect the actual callback and output. An installed VRCFury package, for example, does not prove an ArmatureLink operation occurred. |
+| Explicit mesh edits or TextureImporter settings | Geometry, renderer/slot counts, imported texture payload, and other directly edited categories | These changes can already exist in the authoring input. Do not count them again as build-time savings. |
+
+Stripping authoring-only components does not necessarily reduce a ranked category.
+An SDK scanner exclusion, such as `EditorOnly`, can differ from actual removal from the serialized artifact.
+Inactive status alone does not establish stripping or runtime unreachability.
+Inspect preserved alternatives and generated assets before claiming texture or geometry removal.
+For mixed pipelines, record callback order and intermediate evidence where available.
+If evidence establishes only the total change, report combined-pipeline attribution and the unresolved owner.
+Do not run extra experiments solely to assign savings after the requested target passes.
+
+Versioned sources: [AAO passes](https://github.com/anatawa12/AvatarOptimizer/blob/v1.9.20/Editor/OptimizerPlugin.cs), [d4rk operations](https://github.com/d4rkc0d3r/d4rkAvatarOptimizer/blob/v4.6.0/README.md), and [NDMF/SDK processing order](manual-bake.md#processing-order-and-repeat-processing).
+
 ## Pass ownership and targeted validation
 
 AAO and d4rk overlap in cleanup, merging, and controller processing.

@@ -76,6 +76,9 @@ Do not interpret those zeros as permission to retain unsupported functionality.
 - Mesh slots use `sharedMesh.subMeshCount`, not unique materials or only `sharedMaterials.Length`.
 - Particle, trail, and line scanners can contribute additional material slots.
 - Bone count includes unique non-null bones referenced by scanned skinned renderers. Hierarchy-transform count is not a substitute.
+  Shared references after [Merge Armature](optimization-tools.md#modular-avatar-merge-armature) can reduce this count without shortening bone arrays.
+  In SDK 3.10.5, this count does not inspect vertex weights or add `rootBone` and ancestors independently.
+  Compare array entries and positive-weight influences separately when explaining a discrepancy.
 - Texture scanning deduplicates referenced texture objects. The inspected scanner includes Texture2D mips and excludes RenderTextures.
 - Texture memory is an SDK estimate, not total resident VRAM, frame time, or source-file size.
 - Particle totals use configured `maxParticles`, not the number visible in a quiet frame.

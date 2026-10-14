@@ -63,6 +63,8 @@ Sources: [manual entrypoint](https://github.com/bdunderscore/ndmf/blob/1.14.8/Ed
 
 Manual NDMF processing is not the complete VRChat SDK preprocessing sequence.
 In the inspected integrations, AAO, Modular Avatar, and LAC supply NDMF passes.
+For Merge Armature reference replacement and retention conditions, read [Modular Avatar guidance](optimization-tools.md#modular-avatar-merge-armature).
+Report manual-bake metrics under their actual route using the [mandatory stage comparison](safe-build.md#report-the-build-pipeline-and-metric-comparison).
 d4rk and VRCFury use SDK preprocess callbacks. The plain manual NDMF entrypoint does not invoke those callbacks.
 Inspect other installed plugins or manual-process event subscribers before extending this conclusion to another project.
 

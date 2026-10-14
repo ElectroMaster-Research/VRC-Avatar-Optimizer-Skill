@@ -148,7 +148,7 @@ Offer compatible merging, submesh consolidation, texture policies, and dependenc
 Offer removal only as an optional alternative, especially for confirmed unused items.
 Do not make deletion a silent default or a required condition for starting optimization.
 If retained requirements prevent the target rank, present the limit and available alternatives honestly.
-For supported AAO and d4rk operations, read [optimization tools](references/optimization-tools.md).
+For AAO, d4rk, Modular Avatar, and other metric-changing processors, read [optimization tools](references/optimization-tools.md).
 For provisional reducer guidance and unresolved comparisons, read [experimental geometry comparison](experimental-optimization.md).
 Select operations through the [rank-driven policy](#rank-driven-operation-selection-and-stopping), not through the available tool list.
 
@@ -325,6 +325,8 @@ Shared material assets alone do not prove slot reduction.
 ### Bones and physics
 
 Read the [bone and PhysBone procedure](references/resource-optimization.md#bones-and-physbones).
+Inspect configured [Modular Avatar Merge Armature processing](references/optimization-tools.md#modular-avatar-merge-armature) before selecting additional bone reduction.
+Reconcile unique bone references across authoring and processed output. Do not assume that fewer references mean deleted weights or hierarchy objects.
 Implement proven zero-weight palette cleanup, equivalent collider consolidation, and collision-check reductions explicitly when assessed at 1/5 through 3/5.
 Necessary full bone reduction, compatible PhysBone merging, or affected-transform reduction can qualify at 4/5 under the operation-specific assessment.
 Use [AAO bone/PhysBone guidance](references/optimization-tools.md#aao-bones-and-physbones) only for qualifying supported work and disclosed coupled passes.
@@ -397,7 +399,7 @@ Measure one processed avatar for the requested platform.
 Require every applicable category, complete SDK validation, and fresh bundle sizes.
 Build success alone does not establish rank, behavior, or upload eligibility.
 Record editable authoring-hierarchy SDK metrics separately from final processed-build metrics.
-AAO build-time changes can leave authoring warnings visible.
+Configured build processors can leave authoring warnings visible while their final output has different metrics.
 Prefer SDK measurements of the exact final processed avatar from the completed local Build.
 Label projections as estimates and actual build measurements as measured.
 Never claim verified Poor or better from an estimate or preview alone.
@@ -446,18 +448,13 @@ Report these items:
 - Whether work is complete, blocked on a named dependency, or waiting for a specific user decision.
 
 Highlight concrete changes, retained runtime features and toggles, appearance/behavior tradeoffs, and the overall quality comparison.
-Separate editable authoring-hierarchy SDK metrics from final processed-build metrics in the before/after comparison.
-Use the [compact build comparison](references/safe-build.md#report-the-build-pipeline-and-metric-comparison), especially for material slots and skinned mesh renderer counts.
-Name each build-time optimization tool actually used, its version, enabled operations, and concrete effect on this avatar.
-Distinguish confirmed effects from projected savings. Do not attribute savings to an installed but unused tool.
-Explain that AAO passes and NDMF-hosted processing run during BUILD, before any upload, not inside the running VRChat client.
-Distinguish those passes from TextureImporter changes applied during texture import before the Build.
-NDMF coordinates editor-side passes. Name the optimizer responsible for each transformation instead of attributing all savings to NDMF.
-The client uses the processed result. The editable hierarchy's SDK warnings can remain Very Poor.
-Link measured results to the exact processed avatar, build evidence, and retained runtime features and toggles.
-Label estimates explicitly. Never present estimated Poor as verified Poor.
-Do not claim only “Poor.” State the platform, measured artifact, processing context, and retained runtime features.
-Explain remaining authoring warnings and unresolved limits without implying an unmeasured Build passed.
+The [build comparison and stage labels](references/safe-build.md#report-the-build-pipeline-and-metric-comparison) are mandatory in every final optimization report.
+Report editable authoring SDK value X and measured final processed value Y for each relevant category.
+Identify the responsible processor and concrete operation when established. State unknown attribution explicitly.
+Explain rank differences and remaining authoring warnings even when verified final output meets the target.
+Link all values to their measured artifacts and processing configuration.
+Keep local Build, uploaded artifact, and client observations separate. Never promise that uploading automatically fixes warnings.
+Label unavailable measurements and unresolved discrepancies explicitly.
 Report task-specific schedule retirement or any cleanup limit when a schedule was used.
 
 Do not invent a weighted completion percentage.

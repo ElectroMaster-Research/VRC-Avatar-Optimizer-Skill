@@ -112,30 +112,49 @@ Investigate concrete mechanisms such as descriptor contacts, processor-generated
 Do not manually alter one report to match another.
 Record confirmed mechanisms separately from inferred lifecycle explanations.
 
-Record editable authoring-hierarchy SDK metrics separately from final processed-build metrics.
-AAO can optimize at build time while the editable hierarchy still shows SDK warnings.
-Identify each measured artifact, platform, processor configuration, and retained runtime features, including initially disabled toggles.
-Do not claim only “Poor” or treat an authoring warning as proof that processed optimization failed.
-Do not dismiss that warning without processed-build evidence either.
+Apply the [mandatory metric comparison](#report-the-build-pipeline-and-metric-comparison) to all configured processors and explicit operations.
+Keep initially disabled, runtime-reachable toggles in the retained-feature evidence.
 
 ## Report the build pipeline and metric comparison
 
-Name each build-time optimization tool actually used, with its version, enabled operations, affected objects, and concrete effect.
-For example, report AAO's executed renderer/submesh merges when those operations occurred.
-Report explicit texture derivatives and TextureImporter settings separately from build-time passes.
-Do not present these examples as automatic results or assume that installing a package activates every operation.
-Separate confirmed effects from projected savings. Do not double-count savings from overlapping passes.
-If per-tool attribution is unavailable, report the combined measured change and the attribution limit.
+Every final optimization report must compare editable authoring SDK metrics with measured final processed SDK Build metrics.
+This requirement applies to every relevant tool, custom pass, and changed metric category.
+Use the [processor map](optimization-tools.md#other-processors-and-metric-categories) to investigate mechanisms beyond AAO or bones.
+For each difference, report authoring value **X**, processed value **Y**, units, and category ratings.
+Identify the responsible processor and concrete operation when the evidence establishes them.
+Name the tool version, enabled settings, affected objects, and processing order.
+Link the configuration capture and exact input/output evidence.
+Distinguish confirmed mappings or pass captures from source-supported explanations, hypotheses, and unknown attribution.
+If only the combined pipeline is measured, report that limit instead of assigning all savings to one plugin.
+Do not double-count savings from overlapping passes.
 
-AAO passes and NDMF-hosted processing run in the editor's BUILD pipeline before any upload.
-These optimization passes do not run inside the VRChat client.
-NDMF coordinates editor-side passes. The selected optimizer performs each transformation.
-The client uses the resulting avatar, including its retained controls and generated runtime behavior.
-Editor previews or emulator preprocessing can also invoke processing, but they do not establish final SDK Build results.
-The editable hierarchy can still show Very Poor because it retains authoring objects that build-time processing transforms.
-TextureImporter changes apply during texture import before the Build, not as a VRChat client optimization pass.
-The authoring input can therefore already include imported texture savings before build-time optimizers run.
-Preserve historical tool attribution in existing evidence. A changed recommendation does not change what an earlier run used.
+Use these stage labels consistently:
+
+| Stage | Meaning and evidence |
+|---|---|
+| Editable authoring | Saved scene/prefab input with imported assets and processor configuration. Capture its SDK metrics before processing. |
+| Build processing | Editor-side callbacks and NDMF plugin passes transform the build input. A preview or manual bake is a separately labeled route. |
+| Final local artifact | Completed SDK Build bundle and its correlated processed measurements. Record the bundle/report hashes and processing configuration. |
+| Uploaded artifact | A particular server file/version correlated with the completed bundle. Local Build success does not establish this stage. |
+| Client/runtime | The loaded avatar and observed client metrics or behavior. Record loaded-artifact evidence and the observation time. |
+
+Merge Armature, AAO, and the inspected d4rk/LAC integrations process the avatar in the editor before upload.
+These build operations do not run as optimization passes inside the live VRChat client.
+Generated controls, shaders, animation, and physics can still execute at runtime.
+NDMF hosts plugin passes. Name the plugin that performs the transformation.
+TextureImporter changes apply during import and can already affect authoring metrics before Build.
+Plain NDMF manual processing does not prove execution of the complete SDK callback chain.
+Use the [route and persistence limits](manual-bake.md#processing-order-and-repeat-processing) when comparing those outputs.
+
+Explain every authoring-versus-final rank difference, even when verified final output meets the target.
+For example, identify which measured category changes explain authoring Very Poor versus final local Build Poor.
+Explain why remaining authoring warnings describe the editable input and which processed evidence addresses them.
+Do not dismiss unresolved warnings or infer that an unmeasured Build passes.
+Never promise that uploading automatically fixes warnings or improves rank.
+Do not equate a local processed result with a verified upload or client result.
+If server/client correlation is absent, state that the uploaded/client result remains unverified.
+Record unresolved discrepancies even when local metrics meet the target.
+Preserve historical tool attribution. A changed recommendation does not change what an earlier run used.
 
 Show a compact table with this structure. Replace field descriptions with actual values and evidence labels, not invented results.
 
@@ -150,7 +169,7 @@ Show a compact table with this structure. Replace field descriptions with actual
 | Full material-format payload | Current plus additional alternate-material union | Completed-artifact union, bytes, and inventory link |
 | Menu/other texture payload and unresolved scope | Separate counts, bytes, and unknowns | Corresponding partitions and coverage limits |
 | Stored texture bytes / CPU storage / resident GPU memory | Separate measured or estimated quantities, or unavailable | Same distinct labels and supporting evidence |
-| Bones | SDK-counted bones or labeled projection | SDK-counted bones and evidence link |
+| Bones | Unique referenced transforms under the installed scanner | Corresponding count and mapping evidence. Separate array entries, positive-weight influences, and hierarchy transforms when reconciling differences. |
 | PhysBones | Components / affected transforms / colliders / collision checks | Same individual SDK values and evidence link |
 | Other relevant physics/dynamics | Contacts, constraints, or other affected categories with units | Corresponding SDK values and evidence links |
 | Overall rank | Authoring SDK rating or labeled estimate | Measured SDK rating, or unverified if unavailable |
@@ -165,6 +184,8 @@ Use explicit evidence labels: measured authoring, measured final Build, estimate
 Label preview and emulator measurements by their actual context, not as measured final Build.
 Prefer actual final SDK Build measurements over projections.
 Never claim verified Poor or better from an estimate, a preview, or an incomplete set of SDK categories.
+If either measurement is unavailable, mark it unavailable and name the missing evidence.
+Do not invent X or Y to complete the table.
 If final measurement is blocked, report projected rank as unverified and name the blocked operation.
 A measured SDK texture-memory statistic remains the SDK's memory estimate. It is not a measurement of resident client VRAM.
 
